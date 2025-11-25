@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
 import '../controllers/date_spot_controller.dart';
 import '../models/date_spot_model.dart';
 import 'form_page.dart';
@@ -24,6 +25,14 @@ class _HomePageState extends State<HomePage>{
   void initState(){
     super.initState();
     _dateSpotController.loadDateSpots();
+    _checkLocationPermission();
+  }
+  
+  Future<void> _checkLocationPermission() async {
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+    }
   }
 
   @override
@@ -40,7 +49,7 @@ class _HomePageState extends State<HomePage>{
         myLocationButtonEnabled: true,
         markers: _dateSpotController.dateSpots.map((place){
           return Marker(
-            markerId: MarkerId(place.id ?? place.name),
+            markerId: MarkerId(place.id.toString()),
             position: LatLng(place.latitude, place.longitude),
             infoWindow: InfoWindow(
               title: place.name,
