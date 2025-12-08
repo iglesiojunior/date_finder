@@ -7,13 +7,18 @@ class AuthController extends ChangeNotifier {
   User? _currentUser;
   bool _isAuthenticated = false;
   String? _token;
+  late final Future<void> _initialization;
 
   User? get currentUser => _currentUser;
   bool get isAuthenticated => _isAuthenticated;
   String? get token => _token;
 
   AuthController() {
-    _loadStoredAuth();
+    _initialization = _loadStoredAuth();
+  }
+
+  Future<void> ensureInitialized() async {
+    await _initialization;
   }
 
   Future<void> _loadStoredAuth() async {
@@ -112,22 +117,6 @@ class AuthController extends ChangeNotifier {
       }
     } catch (e) {
       return {'success': false, 'error': 'Erro ao fazer login: ${e.toString()}'};
-    }
-  }
-
-  Future<Map<String, dynamic>> forgotPassword(String email) async {
-    try {
-      return await ApiService.forgotPassword(email: email);
-    } catch (e) {
-      return {'success': false, 'error': 'Erro ao solicitar recuperação: ${e.toString()}'};
-    }
-  }
-
-  Future<Map<String, dynamic>> resetPassword(String token, String password) async {
-    try {
-      return await ApiService.resetPassword(token: token, password: password);
-    } catch (e) {
-      return {'success': false, 'error': 'Erro ao redefinir senha: ${e.toString()}'};
     }
   }
 

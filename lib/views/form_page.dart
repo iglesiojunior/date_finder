@@ -263,7 +263,20 @@ class _FormPageState extends State<FormPage> {
   // Lógica de Salvar
   Future<void> _save() async {
     if (_formKey.currentState!.validate()) {
+      await _authController.ensureInitialized();
       final userId = _authController.currentUser?.id;
+
+      if (userId == null) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Faça login para salvar seus reviews.'),
+            ),
+          );
+        }
+        return;
+      }
+
       final newPlace = DateSpot(
         name: _nameController.text,
         date: _selectedDate.toString(),

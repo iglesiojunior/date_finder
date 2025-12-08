@@ -35,6 +35,7 @@ class _HomePageState extends State<HomePage>{
   }
 
   Future<void> _loadSpots() async {
+    await _authController.ensureInitialized();
     final userId = _authController.currentUser?.id;
     await _dateSpotController.loadDateSpots(userId: userId);
   }

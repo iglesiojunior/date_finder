@@ -20,10 +20,9 @@ class _MyReviewsPageState extends State<MyReviewsPage> {
   }
 
   Future<void> _loadReviews() async {
+    await _authController.ensureInitialized();
     final userId = _authController.currentUser?.id;
-    if (userId != null) {
-      await _dateSpotController.loadDateSpots(userId: userId);
-    }
+    await _dateSpotController.loadDateSpots(userId: userId);
   }
 
   @override
