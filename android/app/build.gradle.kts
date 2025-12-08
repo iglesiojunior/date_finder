@@ -19,6 +19,10 @@ android {
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
+    buildFeatures {
+        buildConfig = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -36,6 +40,9 @@ android {
         versionName = flutter.versionName
 
         manifestPlaceholders["googleMapsApiKey"] = googleMapsApiKey
+        
+        // Passa a chave como BuildConfig field
+        buildConfigField("String", "GOOGLE_MAPS_API_KEY", "\"$googleMapsApiKey\"")
     }
 
     buildTypes {

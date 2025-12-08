@@ -6,6 +6,7 @@ class DateSpot {
   final String date;
   final String notes;
   final double rating;
+  final int? userId;
 
   DateSpot({
     this.id,
@@ -15,6 +16,7 @@ class DateSpot {
     required this.date,
     this.notes = '',
     this.rating = 0.0,
+    this.userId,
   });
 
   Map<String, dynamic> toMap(){
@@ -26,6 +28,7 @@ class DateSpot {
       'date': date,
       'notes': notes,
       'rating': rating,
+      'user_id': userId,
     };
   }
 
@@ -38,6 +41,7 @@ class DateSpot {
       date: map['date'],
       notes: map['notes'] ?? '',
       rating: map['rating']?.toDouble() ?? 0.0,
+      userId: map['user_id'],
     );
   }
 }
