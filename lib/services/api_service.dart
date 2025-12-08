@@ -6,7 +6,7 @@ class ApiService {
   // Para emulador Android: http://10.0.2.2:3000
   // Para dispositivo físico: http://SEU_IP_LOCAL:3000
   // Para produção: https://seu-dominio.com
-  static const String baseUrl = 'http://10.0.2.2:3000/api';
+  static const String baseUrl = 'https://data-finder-server.onrender.com/api';
   
   // Para dispositivo físico, use seu IP local:
   // static const String baseUrl = 'http://192.168.1.X:3000/api';

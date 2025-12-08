@@ -24,16 +24,10 @@ class _MyAppState extends State<MyApp> {
     _initDeepLinks();
   }
 
-  Future<void> _initDeepLinks() async {
+Future<void> _initDeepLinks() async {
     _appLinks = AppLinks();
 
-    // Verifica link inicial (se o app estava fechado e foi aberto pelo link)
-    final Uri? initialUri = await _appLinks.getInitialUri();
-    if (initialUri != null) {
-      _handleDeepLink(initialUri);
-    }
-
-    // Escuta links enquanto o app está aberto ou em background
+    // O Stream já entrega o link inicial automaticamente quando você começa a ouvir
     _appLinks.uriLinkStream.listen((Uri? uri) {
       if (uri != null) {
         _handleDeepLink(uri);

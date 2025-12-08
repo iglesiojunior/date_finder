@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../controllers/auth_controller.dart';
 import 'register_page.dart';
-import 'forgot_password_page.dart';
 import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -143,18 +142,6 @@ class _LoginPageState extends State<LoginPage> {
                             child: CircularProgressIndicator(strokeWidth: 2),
                           )
                         : const Text('Entrar'),
-                  ),
-                  const SizedBox(height: 8),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const ForgotPasswordPage(),
-                        ),
-                      );
-                    },
-                    child: const Text('Esqueceu sua senha?'),
                   ),
                   const SizedBox(height: 8),
                   TextButton(
