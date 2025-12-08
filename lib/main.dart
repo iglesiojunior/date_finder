@@ -63,6 +63,7 @@ Future<void> _initDeepLinks() async {
         useMaterial3: true,
       ),
       home: const LoginPage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
